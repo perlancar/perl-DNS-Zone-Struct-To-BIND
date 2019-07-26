@@ -68,17 +68,19 @@ sub gen_bind_zone_from_struct {
 
     my @res;
 
-    my $rec = _find_rec_by_time($zone->{records}, 'SOA');
-    push @res, '$TTL ', $rec->{ttl}, "\n";
-    push @res, "\@ IN $rec->{ttl} SOA ", _abs_host($args{master_host}), " ", _encode_email_as_name($rec->{email}), " (\n";
-    push @res, "  $rec->{serial} ;serial\n";
-    push @res, "  $rec->{refresh} ;refresh\n";
-    push @res, "  $rec->{retry} ;retry\n";
-    push @res, "  $rec->{expire} ;expire\n";
-    push @res, "  $rec->{ttl} ;ttl\n";
-    push @res, "  )\n";
+    {
+        my $rec = _find_rec_by_time($zone->{records}, 'SOA');
+        push @res, '$TTL ', $rec->{ttl}, "\n";
+        push @res, "\@ IN $rec->{ttl} SOA ", _abs_host($args{master_host}), " ", _encode_email_as_name($rec->{email}), " (\n";
+        push @res, "  $rec->{serial} ;serial\n";
+        push @res, "  $rec->{refresh} ;refresh\n";
+        push @res, "  $rec->{retry} ;retry\n";
+        push @res, "  $rec->{expire} ;expire\n";
+        push @res, "  $rec->{ttl} ;ttl\n";
+        push @res, "  )\n";
+    }
 
-    for $rec (@{ $zone->{records} }) {
+    for my $rec (@{ $zone->{records} }) {
         my $type = $rec->{type};
         next if $type eq 'SOA';
         push @res, "$rec->{name} ", ($rec->{ttl} ? "$rec->{ttl} ":""), "IN ";
