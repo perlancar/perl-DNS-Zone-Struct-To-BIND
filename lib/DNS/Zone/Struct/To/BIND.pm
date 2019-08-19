@@ -1,4 +1,4 @@
-package DNS::ZoneStruct::To::BIND;
+package DNS::Zone::Struct::To::BIND;
 
 # DATE
 # VERSION
@@ -107,7 +107,7 @@ sub gen_bind_zone_from_struct {
 
 =head1 SYNOPSIS
 
- use DNS::ZoneStruct::To::BIND qw(gen_bind_zone_from_struct);
+ use DNS::Zone::Struct::To::BIND qw(gen_bind_zone_from_struct);
 
  say gen_bind_zone_from_struct(
      zone => {
