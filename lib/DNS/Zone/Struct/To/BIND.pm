@@ -92,6 +92,8 @@ sub gen_bind_zone_from_struct {
             push @res, "MX $rec->{priority} ", _abs_host($rec->{host}), "\n";
         } elsif ($type eq 'NS') {
             push @res, "NS ", _abs_host($rec->{host}), "\n";
+        } elsif ($type eq 'SSHFP') {
+            push @res, "SSHFP $rec->{algo} $rec->{fptype} $rec->{fp}\n";
         } elsif ($type eq 'TXT') {
             push @res, "TXT ", _encode_txt($rec->{text}), "\n";
         } else {
