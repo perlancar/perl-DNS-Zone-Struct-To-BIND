@@ -89,7 +89,7 @@ sub gen_bind_zone_from_struct {
         } elsif ($type eq 'CNAME') {
             push @res, "CNAME ", _abs_host($rec->{canon}), "\n";
         } elsif ($type eq 'MX') {
-            push @res, "MX $rec->{priority} ", _abs_host($rec->{host}), "\n";
+            push @res, "MX $rec->{priority} ", $rec->{host}, "\n";
         } elsif ($type eq 'NS') {
             push @res, "NS ", _abs_host($rec->{host}), "\n";
         } elsif ($type eq 'SSHFP') {
