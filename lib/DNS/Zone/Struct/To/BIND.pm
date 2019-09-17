@@ -93,7 +93,7 @@ sub gen_bind_zone_from_struct {
         } elsif ($type eq 'NS') {
             push @res, "NS ", _abs_host($rec->{host}), "\n";
         } elsif ($type eq 'SRV') {
-            push @res, "SRV $rec->{prio} $rec->{weight} $rec->{port} $rec->{target}\n";
+            push @res, "SRV $rec->{priority} $rec->{weight} $rec->{port} $rec->{target}\n";
         } elsif ($type eq 'SSHFP') {
             push @res, "SSHFP $rec->{algo} $rec->{fptype} $rec->{fp}\n";
         } elsif ($type eq 'TXT') {
