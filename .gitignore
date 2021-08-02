@@ -2,3 +2,4 @@ DNS-Zone-Struct-To-BIND-*
 .build
 *~
 nytprof*
+.DS_Store
